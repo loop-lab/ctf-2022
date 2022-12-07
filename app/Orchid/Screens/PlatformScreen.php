@@ -89,6 +89,7 @@ class PlatformScreen extends Screen
                         'ID' => 'id',
                         'Имя' => 'name',
                         'Фамилия' => 'last_name',
+                        'Фото' => 'photo',
                         'Команда' => 'team_id',
                         'Задание' => 'task_id',
                         'Помощник' => 'helper_id',
@@ -101,6 +102,8 @@ class PlatformScreen extends Screen
                             ->fromModel(Member::class, 'name'),
                         'last_name' => Input::make('members')->type('text')
                             ->fromModel(Member::class, 'last_name'),
+                        'photo' => Input::make('members')->type('text')
+                            ->fromModel(Member::class, 'photo'),
                         'team_id' => Relation::make('team')
                             ->fromModel(Team::class, 'name'),
                         'task_id' => Relation::make('task')

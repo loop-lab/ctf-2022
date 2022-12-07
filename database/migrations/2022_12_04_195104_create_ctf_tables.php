@@ -27,6 +27,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('last_name', 50)->default('');
+            $table->string('photo', 128)->default('');
             $table->unsignedInteger('team_id');
             $table->unsignedInteger('task_id');
             $table->unsignedInteger('helper_id')->nullable();

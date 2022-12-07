@@ -10,6 +10,7 @@ class Member extends Model
         'id',
         'name',
         'last_name',
+        'photo',
         'team_id',
         'task_id',
         'helper_id',
