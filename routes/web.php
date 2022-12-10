@@ -15,3 +15,4 @@ use App\Http\Controllers\CTFController;
 */
 
 Route::get('/data', [CTFController::class, 'data']);
+Route::post('/data/set', [CTFController::class, 'set']);
