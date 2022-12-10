@@ -11,7 +11,7 @@ use App\Events\StatusTasksUpdated;
 
 class CTFController extends Controller
 {
-    private $keys = ["x-api-key", "team_name", "task_name", "user_name", "user_real_name", "points"];
+    private $keys = ["team_name", "task_name", "user_name", "user_real_name", "points"];
     private $secretKey = "88927f3d-1039-4c9c-b8c7-e4e10c834";
 
     public function data()
@@ -34,7 +34,11 @@ class CTFController extends Controller
         Task::where('name', $data['task_name'])->update(['is_solved' => true]);
         Member::where('user_name', $data['user_name'])->update(['is_winner' => true]);
 
-        StatusTasksUpdated::dispatch($data);
+        StatusTasksUpdated::dispatch([
+            'tasks' => Task::get(),
+            'teams' => Team::get(),
+            'members' => Member::get(),
+        ]);
 
         return response()->json(['success' => true]);
     }
