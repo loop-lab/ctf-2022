@@ -31,8 +31,8 @@ class CTFController extends Controller
             return response()->json(['success' => false]);
         }
 
-        Task::where('name', $data['task_name'])->update(['is_solved' => true]);
-        Member::where('user_name', $data['user_name'])->update(['is_winner' => true]);
+        $taskId = Task::where('name', $data['task_name'])->update(['is_solved' => true]);
+        Member::where('user_name', $data['user_name'])->where('task_id', $taskId)->update(['is_winner' => true]);
 
         StatusTasksUpdated::dispatch([
             'tasks' => Task::get(),
